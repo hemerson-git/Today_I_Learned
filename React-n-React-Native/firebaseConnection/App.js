@@ -1,4 +1,4 @@
-import firebase, {database} from 'firebase';
+import firebase from 'firebase';
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 
@@ -21,8 +21,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    let pontuation = firebase.database().ref('pontuacao');
-    pontuation.on('value', (snapshot) => {
+    let points = firebase.database().ref('pontuacao');
+    points.on('value', (snapshot) => {
       setPontuation(snapshot.val());
     });
   }, []);
@@ -38,8 +38,8 @@ export default function App() {
   }
 
   function listData() {
-    let pontuation = firebase.database().ref('pontuancao');
-    pontuation.on('value', (snapshot) => {
+    let points = firebase.database().ref('pontuancao');
+    points.on('value', (snapshot) => {
       console.log(snapshot.val());
     });
   }
