@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="listaTelefonica">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diretivas</title>
+  <script src="assets/vendor/angular.min.js"></script>
+  <script src="assets/vendor/angular-messages.js"></script>
+  <script src="assets/vendor/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap-4/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/bootstrap-4/css/bootstrap.min.css">
+
+  <style>
+    .title {
+      width: 400px;
+      margin-top: 20px;
+    }
+
+    .square {
+      height: 15px;
+      width: 15px;
+    }
+  </style>
+  
+  <script>
+    angular.module("listaTelefonica", ["ngMessages"]);
+    angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
+      $scope.title = 'Lista Telefônica';
+      $scope.contacts = [
+        {name: 'Hemerson', phone: '999998888', date: new Date(), color: 'cyan'},
+        {name: 'Izabela', phone: '999998877', date: new Date(), color: 'purple'},
+        {name: 'Grazielle', phone: '999998866', date: new Date(), color: 'red'},
+      ];
+
+      $scope.phone_companies = [
+        {name: 'Oi', code: '14', category: 'cell-phone'},
+        {name: 'Vivo', code: '15', category: 'cell-phone'},
+        {name: 'Tim', code: '41', category: 'cell-phone'},
+        {name: 'GVT', code: '25', category: 'phone'},
+        {name: 'Embratel', code: '21', category: 'phone'}
+      ];
+
+      $scope.addContact = (contact) => {
+        $scope.contacts.push(angular.copy(contact));
+        delete $scope.contact;
+        $scope.contactForm.$setPristine();
+      }
+
+      $scope.deleteContacts = (contacts) => {
+        $scope.contacts = contacts.filter(contact => !contact.selected);
+      }
+
+      $scope.isContactSelected = (contacts) => {
+        return contacts.some(contact => contact.selected);
+      }
+
+      $scope.sortBy = field => {
+        $scope.searchOrdenation = field;
+        $scope.desc = !$scope.desc;
+      }
+    });
+
+  </script>
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+  <div class="container">
+      <div class="row jumbotron mt-5">
+        <div class="col-12 d-flex justify-content-center">
+          <h3 class="text-center mb-5 title display-4">{{title}}</h3>
+        </div>
+        <div class="form-group w-100">
+          <input type="text" ng-model="search" placeholder="O que você está buscando?" class="form-control">
+        </div>
+        <table class="table table-striped table-hover table-light">
+          <tr ng-hide="contacts.length === 0">
+            <th></th>
+            <th><a href="" ng-click="sortBy('name')">Nome</a></th>
+            <th><a href="" ng-click="sortBy('date')">Data</a></th>
+            <th>Telefone</th>
+            <th>Operadora</th>
+            <th></th>
+          </tr>
+
+          <tr ng-class="{'bg-info text-white': contact.selected}" 
+            ng-repeat="contact in contacts | filter:{name: search} | orderBy:searchOrdenation:desc"
+          >
+            <td><input type="checkbox" ng-model="contact.selected"></td>
+            <td>{{contact.name | uppercase}}</td>
+            <td>{{contact.date | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{contact.phone}}</td>
+            <td>{{contact.company.name}}</td>
+            <td>
+              <div class="square" ng-style="{'background-color': contact.color}"></div>
+            </td>
+          </tr>
+        </table>
+        <hr>
+        <form name="contactForm" class="form w-100 mb-0 mt-5">
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="contact.name" name="name" 
+              placeholder="Nome" ng-required="true" ng-minlength="10"
+            />
+          </div>
+  
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="contact.phone" 
+              name="phone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"
+            />
+          </div>
+
+          <select name="" id="phoneCompanies" class="form-control mb-2" ng-model="contact.company"
+            ng-options="company.name group by company.category for company in phone_companies | orderBy:'name'"
+          >
+            <option value="">Selecione uma operadora</option>
+          </select>
+
+          <div ng-messages="contactForm.name.$error" class="alert alert-danger">
+            <div ng-message="required">
+              <span>Por favor, preencha o campo nome</span>
+            </div>
+            
+            <div ng-message="minlength">
+              <span>O campo nome deve ter no mínimo 10 caracteres</span>
+            </div>
+          </div>
+
+          <div class="alert alert-danger" ng-show="contactForm.phone.$error.required && contactForm.phone.$dirty">
+            <span>Por favor, preencha o campo Telefone</span>
+          </div>
+
+          <div class="alert alert-danger" ng-show="contactForm.phone.$error.pattern && contactForm.phone.$dirty">
+            <span>O campo telefone deve ter o formato xxxxx-xxxx.</span>
+          </div>
+          
+          <div class="form-group text-center mt-5 mb-0">
+            <button class="btn btn-info btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">
+              Adicionar contato
+            </button>
+
+            <button class="btn btn-danger btn-block" ng-click="deleteContacts(contacts)" ng-show="isContactSelected(contacts)">
+              Apagar selecionados
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div ng-include="'footer.html'"></div>
+</body>
+</html>
+
+<!-- 
+  Para mostrar para o Angular que você quer aplicar um filtro, usasse o sinal de |
+
+    uppercase => Transforma a expresion em maiúsula 
+    lowercase => Transform a expresion em minúcula
+    date => aplica uma máscara à data
+    filter => Filtra um Array com base em um critério
+    orderBy => ordena um Array com base em um critério
+ -->
