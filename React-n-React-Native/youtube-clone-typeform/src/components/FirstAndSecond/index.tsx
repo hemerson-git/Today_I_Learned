@@ -56,6 +56,11 @@ const First: React.FC = () => {
       ['58vh', '0vh']
   );
 
+  const rightSideRotate = useTransform(scrollYProgress,
+      [0.047, 0.093, 0.197, 0.321],
+      ['270deg', '0deg', '0deg', '90deg']
+  );
+
   const offsetY = useTransform(scrollYProgress,
       [0.322, 0.397, 0.461, 0.53],
       ['0', '-100%', '-100%', '-200%']
@@ -81,7 +86,8 @@ const First: React.FC = () => {
             <motion.div className='right-image'
               style= {{
                 y: rightSideY,
-                scale: rightSideScale
+                scale: rightSideScale,
+                rotate: rightSideRotate
               }}
             />
           </div>
