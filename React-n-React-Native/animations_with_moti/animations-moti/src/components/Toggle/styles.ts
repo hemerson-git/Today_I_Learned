@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     left: 24,
 
     width: 70,
-    height: 170,
+    height: 70,
     overflow: "hidden",
 
     backgroundColor: theme.colors.red,
@@ -17,15 +17,15 @@ export const styles = StyleSheet.create({
     borderBottomStartRadius: 30,
     borderTopEndRadius: 30,
     alignItems: "center",
-    paddingVertical: 24,
+    paddingVertical: 20,
   },
   info: {
-    marginTop: 17,
+    marginTop: 20,
   },
   label: {
     fontFamily: theme.fonts.primary400,
     color: theme.colors.white,
-    fontSize: 14,
+    fontSize: 15,
   },
   value: {
     fontFamily: theme.fonts.primary700,
