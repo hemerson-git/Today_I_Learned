@@ -1,0 +1,53 @@
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 18.75rem;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #8335bf;
+  list-style: none;
+
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  transition: background-color 0.5s, width 0.5s;
+  -webkit-transition: background-color 0.5s, width 0.5s;
+  -moz-transition: background-color 0.5s, width 0.5s;
+  -ms-transition: background-color 0.5s, width 0.5s;
+  -o-transition: background-color 0.5s, width 0.5s;
+  background-color: transparent;
+}
+
+.menu a:hover::after {
+  width: 24px;
+  height: 2px;
+  top: calc(100% + 4px);
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+}
