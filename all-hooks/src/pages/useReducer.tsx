@@ -47,6 +47,7 @@ export function UseReducerExample() {
   const [state, dispatch] = useReducer(reducer, initialValue);
 
   function handleReset() {
+    // dispatch function fires the reducer
     dispatch({ type: "reset" });
   }
 

@@ -20,6 +20,7 @@
   color: white;
   text-decoration: none;
   position: relative;
+  user-select: none;
 }
 
 .menu a::after {
@@ -34,7 +35,13 @@
   background-color: transparent;
 }
 
-.menu a:hover::after {
+.menu a.active {
+  pointer-events: none;
+  cursor: default;
+}
+
+.menu a:hover::after,
+.menu a.active::after {
   width: 24px;
   height: 2px;
   top: calc(100% + 4px);
