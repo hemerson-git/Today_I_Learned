@@ -14,8 +14,6 @@ export function Menu() {
 
   return (
     <header>
-      <a href=""></a>
-
       <NavigationMenu.Root>
         <NavigationMenu.List className="menu">
           <NavigationMenu.Item>
@@ -36,6 +34,14 @@ export function Menu() {
 
           <NavigationMenu.Item>
             <Link to="/useReducer">useReducer</Link>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useCallback">useCallback</Link>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useMemo">useMemo</Link>
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
