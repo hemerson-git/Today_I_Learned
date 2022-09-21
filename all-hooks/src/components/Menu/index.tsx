@@ -43,6 +43,10 @@ export function Menu() {
           <NavigationMenu.Item>
             <Link to="/useMemo">useMemo</Link>
           </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useRef">useRef</Link>
+          </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
     </header>
