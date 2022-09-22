@@ -6,6 +6,9 @@ import { UseStateExample } from "../pages/useState";
 import { UseEffectExample } from "../pages/useEffect";
 import { UseContextExample } from "../pages/useContext";
 import { UseReducerExample } from "../pages/useReducer";
+import { UseCallbackExample } from "../pages/useCallback";
+import { UseMemoExample } from "../pages/useMemo";
+import { UseRefExample } from "../pages/useRef";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -13,6 +16,9 @@ const router = createBrowserRouter([
   { path: "/useEffect", element: <UseEffectExample /> },
   { path: "/useContext", element: <UseContextExample /> },
   { path: "/useReducer", element: <UseReducerExample /> },
+  { path: "/useCallback", element: <UseCallbackExample /> },
+  { path: "/useMemo", element: <UseMemoExample /> },
+  { path: "/useRef", element: <UseRefExample /> },
 ]);
 
 export function Routes() {
