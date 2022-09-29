@@ -32,8 +32,8 @@ export function Modal({ children, title, description }: ModalProps) {
           </Dialog.Close>
         </div>
 
-        <Dialog.Description>
-          <p className="text-secondary-300">{description}</p>
+        <Dialog.Description className="text-secondary-300">
+          {description}
         </Dialog.Description>
 
         {children}

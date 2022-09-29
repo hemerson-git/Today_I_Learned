@@ -18,7 +18,9 @@ function App() {
               absolute bottom-1/2 translate-y-1/2 left-2 right-2 backdrop-blur-md bg-white/30 
               rounded-md text-center px-6 py-8 select-none"
             >
-              <h1 className="text-2xl">Wellcome to our page</h1>
+              <h1 className="text-2xl drop-shadow-lg shadow-primary-700 font-bold">
+                Wellcome to our page
+              </h1>
 
               <span className="block">We're very happy to have you here!</span>
               <span>
