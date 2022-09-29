@@ -47,6 +47,14 @@ export function Menu() {
           <NavigationMenu.Item>
             <Link to="/useRef">useRef</Link>
           </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useImperativeHandle">useImperativeHandle</Link>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useLayoutEffect">useLayoutEffect</Link>
+          </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
     </header>

@@ -28,6 +28,7 @@ export function UseMemoExample() {
       <input
         type="text"
         id="name"
+        autoComplete="none"
         placeholder="Type your Name"
         onChange={(e) => setName(e.target.value)}
       />

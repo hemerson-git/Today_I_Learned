@@ -9,6 +9,8 @@ import { UseReducerExample } from "../pages/useReducer";
 import { UseCallbackExample } from "../pages/useCallback";
 import { UseMemoExample } from "../pages/useMemo";
 import { UseRefExample } from "../pages/useRef";
+import { UseImperativeHandleExample } from "../pages/useImperativeHandle";
+import { UseLayoutEffectExample } from "../pages/useLayoutEffect";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
   { path: "/useCallback", element: <UseCallbackExample /> },
   { path: "/useMemo", element: <UseMemoExample /> },
   { path: "/useRef", element: <UseRefExample /> },
+  { path: "/useImperativeHandle", element: <UseImperativeHandleExample /> },
+  { path: "/useLayoutEffect", element: <UseLayoutEffectExample /> },
 ]);
 
 export function Routes() {
