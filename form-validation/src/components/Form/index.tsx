@@ -1,9 +1,16 @@
-import { FormEvent } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { object, string, InferType } from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
+// COMPONENTS
 import { CustomButton } from "../CustomButton";
 import { CustomInput } from "../CustomInput";
+import { CustomInputMask } from "../CustomInputMask";
+import { Modal } from "../Modal";
+import { useState } from "react";
+
+// VALIDATION
 
 const schema = object({
   name: string()
@@ -44,24 +51,32 @@ interface SignUpProps extends InferType<typeof schema> {}
 export function Form() {
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
     register,
     getValues,
   } = useForm<SignUpProps>({
     resolver: yupResolver(schema),
   });
 
-  function handleUserSubmit(event: FormEvent) {
-    event.preventDefault();
-    console.log(getValues());
-  }
+  const [fields, setFields] = useState({});
 
-  console.log(errors);
+  function handleUserSubmit() {
+    const { email, mobile, name, phone } = getValues();
+    setFields((prevState) => ({
+      ...prevState,
+      email: email,
+      mobile: mobile,
+      name: name,
+      phone: phone,
+    }));
+
+    console.log(fields);
+  }
 
   return (
     <form
       action=""
-      onSubmit={handleSubmit(() => handleUserSubmit)}
+      onSubmit={handleSubmit(() => handleUserSubmit())}
       className="items-center flex flex-col"
     >
       <CustomInput
@@ -103,16 +118,17 @@ export function Form() {
       />
 
       <div className="flex gap-4">
-        <CustomInput
+        <CustomInputMask
           title="Mobile"
           id="mobile"
           placeholder="+99 (99)99999-9999"
           {...register("mobile")}
           aria-invalid={errors.mobile ? "true" : "false"}
           errorMessage={errors.mobile?.message?.toString()}
+          mask="+99 (99)99999-9999"
         />
 
-        <CustomInput
+        <CustomInputMask
           title="Phone"
           id="phone"
           type="tel"
@@ -122,10 +138,45 @@ export function Form() {
           })}
           aria-invalid={errors.phone ? "true" : "false"}
           errorMessage={errors.phone?.message?.toString()}
+          mask="+99 (99)9999-9999"
         />
       </div>
 
-      <CustomButton title="SignUp" />
+      <Dialog.Root>
+        <Dialog.Trigger>
+          <CustomButton title="SignUp" type="submit" />
+        </Dialog.Trigger>
+
+        {isSubmitSuccessful && (
+          <Modal
+            title="Success!!"
+            description="Now you have access to everything on the platform"
+          >
+            <div className="flex flex-col text-center flex-1">
+              {getValues().name && (
+                <div className="flex mt-2 text-primary-500 gap-4">
+                  <strong>Name:</strong>
+                  <span>{getValues().name}</span>
+                </div>
+              )}
+
+              {getValues().email && (
+                <div className="flex mt-2 text-primary-500 gap-4">
+                  <strong>E-mail:</strong>
+                  <span>{getValues().email}</span>
+                </div>
+              )}
+
+              {getValues().mobile && (
+                <div className="flex mt-2 text-primary-500 gap-4">
+                  <strong>Phone 1:</strong>
+                  <span>{getValues().mobile}</span>
+                </div>
+              )}
+            </div>
+          </Modal>
+        )}
+      </Dialog.Root>
       <a href="#" className="underline underline-offset-2">
         Already have an account?
       </a>
