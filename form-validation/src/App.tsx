@@ -8,7 +8,7 @@ function App() {
         <div className="flex max-w-[820px] bg-red-200 items-stretch">
           <div className="overflow-hidden flex-1 h-full relative">
             <img
-              src="../src/assets/imgs/strawberries.jpg"
+              src="/strawberries.jpg"
               alt=""
               className="object-cover h-full"
             />
