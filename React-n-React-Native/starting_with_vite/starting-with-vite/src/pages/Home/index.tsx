@@ -6,7 +6,6 @@ export function Home() {
   const [tweets, setTweets] = useState<string[]>([
     "Tweet 1",
     "Tweet 2",
-    "Tweet 3",
   ]);
 
   function createTweet() {
