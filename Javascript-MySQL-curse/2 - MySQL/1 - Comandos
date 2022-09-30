@@ -1,0 +1,51 @@
+/* Criação de uma tabela
+
+CREATE TABLE `cursos` (
+	`id_curso` INT UNSIGNED NOT NULL Auto_increment,
+	PRIMARY KEY (`id_curso`)
+)
+*/
+
+/* Inserção de itens na tabela
+
+INSERT INTO alunos
+	VALUES (DEFAULT, 'Hemerson Oliveira', '1997-01-06', 'Rua Lorem Ipsun, Lorem, 19', 'Vitória da Conquista', 'BA', '12345678911');
+*/
+
+
+/* Atualiza dados dentro do banco
+	UPDATE alunos 
+	SET nome = 'Graziele'
+	WHERE id_aluno = 1;
+*/
+
+/* Deleta dados de dentro de uma tabela
+
+DELETE FROM TABLE_NAME
+WHERE condition
+*/
+
+****************************************************************************************************
+****************************************************************************************************
+
+/* Fazendo uma consulta em uma tabela*/
+
+/* Recupera todos os dados da tabela */
+# SELECT * FROM alunos;
+
+/* Recupera os dados que atendem às condições especificadas*/
+
+#SELECT nome, cidade, estado, cpf
+#FROM alunos
+#WHERE cidade = 'Vitória da Conquista';
+
+/* Recupera os dados em uma ordem especificada (desc para descendente) */
+
+#SELECT * 
+#FROM alunos
+#ORDER BY nome
+
+/* Retorna todos os dados que de pessoas que tem a data de nascimento diferente da especificada */
+#SELECT * 
+#FROM alunos 
+#WHERE data_nacimento <> '1997-01-05'

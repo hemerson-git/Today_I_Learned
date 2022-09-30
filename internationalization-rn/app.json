@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "internationalization",
+    "slug": "internationalization",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
