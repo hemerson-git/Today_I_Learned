@@ -143,8 +143,12 @@ export function Form() {
       </div>
 
       <Dialog.Root>
-        <Dialog.Trigger>
-          <CustomButton title="SignUp" type="submit" />
+        <Dialog.Trigger
+          className="bg-primary-700 flex items-center justify-center w-[320px] h-10 max-w-full mx-auto 
+          rounded-md transition-colors hover:bg-primary-500 mt-8"
+          type="submit"
+        >
+          SignUp
         </Dialog.Trigger>
 
         {isSubmitSuccessful && (

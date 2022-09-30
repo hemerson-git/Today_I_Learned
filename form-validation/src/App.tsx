@@ -5,7 +5,7 @@ function App() {
   return (
     <main className="bg-secondary-900 min-h-screen flex items-center justify-center text-white">
       <section className="container flex justify-center">
-        <div className="flex max-w-[820px] bg-red-200 items-stretch">
+        <div className="flex max-w-[820px] flex-wrap flex-col sm:flex-row bg-red-200 items-stretch">
           <div className="overflow-hidden flex-1 h-full relative">
             <img
               src="/strawberries.jpg"
