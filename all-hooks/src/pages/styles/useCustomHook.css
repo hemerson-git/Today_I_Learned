@@ -1,0 +1,22 @@
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userContainer img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.userContainer span.name {
+  font-size: 2.5rem;
+}

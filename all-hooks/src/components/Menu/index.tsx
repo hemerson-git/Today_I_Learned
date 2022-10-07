@@ -55,6 +55,10 @@ export function Menu() {
           <NavigationMenu.Item>
             <Link to="/useLayoutEffect">useLayoutEffect</Link>
           </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link to="/useCustomHook">useCustomHook</Link>
+          </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
     </header>

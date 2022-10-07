@@ -11,6 +11,7 @@ import { UseMemoExample } from "../pages/useMemo";
 import { UseRefExample } from "../pages/useRef";
 import { UseImperativeHandleExample } from "../pages/useImperativeHandle";
 import { UseLayoutEffectExample } from "../pages/useLayoutEffect";
+import { UseCustomHookExample } from "../pages/useCustomHook";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   { path: "/useRef", element: <UseRefExample /> },
   { path: "/useImperativeHandle", element: <UseImperativeHandleExample /> },
   { path: "/useLayoutEffect", element: <UseLayoutEffectExample /> },
+  { path: "/useCustomHook", element: <UseCustomHookExample /> },
 ]);
 
 export function Routes() {
