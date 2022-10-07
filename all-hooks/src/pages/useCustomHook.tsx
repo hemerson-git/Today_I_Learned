@@ -2,10 +2,22 @@ import { useEffect, useState } from "react";
 import { GoBack } from "../components/GoBack";
 import "./styles/useCustomHook.css";
 
+interface FetchResponse {
+  json: {
+    name: string;
+    avatar_url: string;
+    login: string;
+  };
+
+  status: number;
+}
+
 export function UseCustomHookExample() {
   const [loading, response] = useFetch(
     "https://api.github.com/users/hemerson-git"
   );
+
+  const { json, status } = response as unknown as FetchResponse;
 
   if (loading) {
     return <h1>loading..</h1>;
@@ -13,30 +25,34 @@ export function UseCustomHookExample() {
 
   return (
     <div className="userContainer">
-      {response && (
-        <>
-          <img src={response?.avatar_url} alt="" />
-          <span className="name">{response?.name}</span>
-          <span>{response?.login}</span>
+      <img src={json?.avatar_url} alt="" />
+      <span className="name">{json?.name}</span>
+      <span>{json?.login}</span>
 
-          <GoBack />
-        </>
-      )}
+      <GoBack />
     </div>
   );
 }
 
 function useFetch(url: string) {
   const [loading, setLoading] = useState(true);
-  const [response, setResponse] = useState<JSON | null>(null);
+  const [response, setResponse] = useState<{ json: JSON; status: number }>({
+    json: JSON.parse("{}"),
+    status: 0,
+  });
 
   useEffect(() => {
     (async () => {
-      const resp = await fetch(url);
-      const json = await resp.json();
+      try {
+        const resp = await fetch(url);
+        const json = await resp.json();
 
-      setLoading(false);
-      setResponse(json);
+        setResponse({ json, status: resp.status });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
     })();
   }, [url]);
 
